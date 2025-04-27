@@ -11,6 +11,10 @@
 - Retrofit
 - [Dexter](https://github.com/Karumi/Dexter)
 
+*This project was developed as part of The Complete Android 14 & Kotlin Development Masterclass by TutorialsEU*
+
+*Minimum supported Android version is **Android 7 (Nougat)***
+
 ## Illustrations
 
 ### Home screen
