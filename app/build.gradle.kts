@@ -1,6 +1,16 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+}
+
+val localProps = Properties()
+val file = File(rootProject.rootDir, "local.properties")
+if (file.exists() && file.isFile) {
+    file.inputStream().use {
+        localProps.load(it)
+    }
 }
 
 android {
@@ -24,6 +34,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "APP_ID", localProps.getProperty("APP_ID"))
+        }
+
+        debug {
+            buildConfigField("String", "APP_ID", localProps.getProperty("APP_ID"))
         }
     }
     compileOptions {
@@ -36,6 +51,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
